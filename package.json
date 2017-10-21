@@ -1,0 +1,21 @@
+{
+  "name": "test-mysql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/concurrently 'node .' 'node .' 'node .' 'node .' 'node .' 'node .' 'node .' 'node .' 'node .'",
+    "kill-mysql": "docker rm -f test-mysql",
+    "start-mysql": "docker run --name test-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=test -d mysql --net-write-timeout=1 --net-read-timeout=1",
+    "provision": "mysql -h 127.0.0.1 -u root -ptest < data.sql",
+    "mysql": "npm run kill-mysql; npm run start-mysql"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.15.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0"
+  }
+}
